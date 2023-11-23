@@ -1,10 +1,10 @@
-package com.gamma.apigames;
+package com.gammaacademy.gamma.games.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApigamesApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,13 +1,13 @@
-package com.gamma.apigames;
+package com.gammaacademy.gamma.games.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApigamesApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApigamesApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
