@@ -1,29 +1,41 @@
 package com.gammaacademy.gamma.games.api.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-@Table(name = "Historico")
+import java.util.Date;
+
 @Entity
+@Table(name = "historico")
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class Historico{
+public class Historico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idHistorico;
-    
-    @Column(unique = true, nullable = false)
-    private Double idPontuacao;
 
-    @Column(unique = true, nullable = false)
-    private Double idJogo;
+    @ManyToOne
+    @JoinColumn(name = "idJogo", referencedColumnName = "idJogo", nullable = false)
+    private Jogo jogo;
 
-    @Column(unique = true, nullable = false)
-    private Double idUsuario;
-
-    @Column(unique = true, nullable = false)
-    private Double pontuacao;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario", nullable = false)
+    private Usuario usuario;
 
     @Column(nullable = false)
-    private Double datatime;
+    private Double pontuacao;
 
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
 }
+

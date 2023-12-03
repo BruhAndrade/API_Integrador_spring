@@ -1,10 +1,19 @@
 package com.gammaacademy.gamma.games.api.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-@Table(name = "jogo")
+import java.util.Date;
+import java.util.Set;
+
 @Entity
+@Table(name = "jogo")
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Jogo {
     @Id
@@ -18,8 +27,16 @@ public class Jogo {
     private String nomeAutor;
 
     @Column(length = 200, nullable = false)
-    private String websiteJogo;
+    private String siteJogo;
 
-    public void setId_jogo(long id) {
-    }
+    @OneToMany(mappedBy = "jogo", cascade = CascadeType.ALL)
+    private Set<Historico> historicos;
+
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
 }

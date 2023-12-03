@@ -45,6 +45,5 @@ public class HistoricoController {
     // Endpoint para excluir um historico pelo ID
     @DeleteMapping("/{id}")
     public void deleteHistorico(@PathVariable long id) {
-        historicoService.deleteHistorico(id);
     }
 }
