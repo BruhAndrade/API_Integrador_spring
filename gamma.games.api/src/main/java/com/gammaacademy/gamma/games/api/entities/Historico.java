@@ -1,18 +1,13 @@
 package com.gammaacademy.gamma.games.api.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "historico")
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class Historico {
     @Id
@@ -20,15 +15,14 @@ public class Historico {
     private long idHistorico;
 
     @ManyToOne
-    @JoinColumn(name = "idJogo", referencedColumnName = "idJogo", nullable = false)
+    @JoinColumn(name = "idJogo")
     private Jogo jogo;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario", nullable = false)
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @Column(nullable = false)
-    private Double pontuacao;
+    private double pontuacao;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")

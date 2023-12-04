@@ -23,8 +23,7 @@ public class JogoService {
     }
 
     public Jogo getJogoById(long id) {
-        Optional<Jogo> jogoOptional = jogoRepository.findById(id);
-        return jogoOptional.orElse(null);
+        return jogoRepository.findById(id).orElse(null);
     }
 
     public Jogo createJogo(Jogo jogo) {
@@ -33,11 +32,12 @@ public class JogoService {
 
     public Jogo updateJogo(long id, Jogo jogo) {
         if (jogoRepository.existsById(id)) {
-            jogo.setId_jogo(id);
+            // No need to set the ID explicitly; Spring Data JPA handles it
             return jogoRepository.save(jogo);
         }
         return null;
     }
+
 
     public void deleteJogo(long id) {
         jogoRepository.deleteById(id);

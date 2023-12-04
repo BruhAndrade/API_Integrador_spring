@@ -18,32 +18,28 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    // Retorna todos os usuários
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    // Retorna um usuário pelo ID
     public Usuario getUsuarioById(long id) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
-        return usuarioOptional.orElse(null);
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        return optionalUsuario.orElse(null);
     }
 
-    // Cria um novo usuário
     public Usuario createUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    // Atualiza um usuário existente pelo ID
     public Usuario updateUsuario(long id, Usuario usuario) {
         if (usuarioRepository.existsById(id)) {
-            usuario.setId_usuario(id);
+            usuario.setIdUsuario(id);
             return usuarioRepository.save(usuario);
+        } else {
+            return null; // or throw an exception indicating the user with that id doesn't exist
         }
-        return null;
     }
 
-    // Exclui um usuário pelo ID
     public void deleteUsuario(long id) {
         usuarioRepository.deleteById(id);
     }
