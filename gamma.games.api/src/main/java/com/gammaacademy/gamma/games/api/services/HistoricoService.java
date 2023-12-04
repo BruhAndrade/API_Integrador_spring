@@ -29,6 +29,10 @@ public class HistoricoService {
         return historicoRepository.save(historico);
     }
 
+    public void delete(long id) {
+        historicoRepository.deleteById(id);
+    }
+
     public Historico updateHistorico(long id, Historico historico) {
         if (historicoRepository.existsById(id)) {
             return historicoRepository.save(historico);

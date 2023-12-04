@@ -24,7 +24,7 @@ public class HistoricoController {
         return historicoService.getAllHistoricos();
     }
 
-    // Endpoint para obter um usuário pelo ID
+    // Endpoint para obter um historico pelo ID
     @GetMapping("/{id}")
     public Historico getHistoricoById(@PathVariable long id) {
         return historicoService.getHistoricoById(id);
@@ -45,5 +45,6 @@ public class HistoricoController {
     // Endpoint para excluir um historico pelo ID
     @DeleteMapping("/{id}")
     public void deleteHistorico(@PathVariable long id) {
+        historicoService.delete(id);
     }
 }

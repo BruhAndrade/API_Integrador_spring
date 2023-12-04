@@ -36,7 +36,7 @@ public class UsuarioService {
             usuario.setIdUsuario(id);
             return usuarioRepository.save(usuario);
         } else {
-            return null; // or throw an exception indicating the user with that id doesn't exist
+            return null;
         }
     }
 
