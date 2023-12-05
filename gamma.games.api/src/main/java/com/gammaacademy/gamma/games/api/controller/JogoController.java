@@ -1,6 +1,6 @@
 package com.gammaacademy.gamma.games.api.controller;
 
-import com.gammaacademy.gamma.games.api.entities.Jogo;
+import com.gammaacademy.gamma.games.api.dto.JogoDTO;
 import com.gammaacademy.gamma.games.api.services.JogoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,33 +11,31 @@ import java.util.List;
 @RequestMapping("/jogos")
 public class JogoController {
 
-
     private final JogoService jogoService;
 
     @Autowired
     public JogoController(JogoService jogoService) {
-
         this.jogoService = jogoService;
     }
 
     @GetMapping
-    public List<Jogo> getAllJogos() {
-        return jogoService.getAllJogos();
+    public List<JogoDTO> getAllJogos() {
+        return jogoService.getAllJogosDTO();
     }
 
     @GetMapping("/{id}")
-    public Jogo getJogoById(@PathVariable long id) {
-        return jogoService.getJogoById(id);
+    public JogoDTO getJogoById(@PathVariable long id) {
+        return jogoService.getJogoDTOById(id);
     }
 
     @PostMapping
-    public Jogo createJogo(@RequestBody Jogo jogo) {
-        return jogoService.createJogo(jogo);
+    public JogoDTO createJogo(@RequestBody JogoDTO jogoDTO) {
+        return jogoService.createJogo(jogoDTO);
     }
 
     @PutMapping("/{id}")
-    public Jogo updateJogo(@PathVariable long id, @RequestBody Jogo jogo) {
-        return jogoService.updateJogo(id, jogo);
+    public JogoDTO updateJogo(@PathVariable long id, @RequestBody JogoDTO jogoDTO) {
+        return jogoService.updateJogo(id, jogoDTO);
     }
 
     @DeleteMapping("/{id}")

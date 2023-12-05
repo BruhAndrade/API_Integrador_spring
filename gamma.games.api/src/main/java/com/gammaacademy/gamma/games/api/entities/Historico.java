@@ -12,14 +12,14 @@ import java.util.Date;
 public class Historico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idHistorico;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "idJogo")
+    @JoinColumn(name = "id_jogo")
     private Jogo jogo;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     private double pontuacao;
@@ -32,4 +32,3 @@ public class Historico {
     @Column(name = "updated_at")
     private Date updatedAt;
 }
-

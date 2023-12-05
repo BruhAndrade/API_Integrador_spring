@@ -1,45 +1,45 @@
-    package com.gammaacademy.gamma.games.api.controller;
+package com.gammaacademy.gamma.games.api.controller;
 
-    import com.gammaacademy.gamma.games.api.entities.Usuario;
-    import com.gammaacademy.gamma.games.api.services.UsuarioService;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.web.bind.annotation.*;
+import com.gammaacademy.gamma.games.api.dto.UsuarioDTO;
+import com.gammaacademy.gamma.games.api.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-    import java.util.List;
+import java.util.List;
 
-    @RestController
-    @RequestMapping("/usuario")
-    public class UsuarioController {
+@RestController
+@RequestMapping("/usuario")
+public class UsuarioController {
 
-        private final UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
-        @Autowired
-        public UsuarioController(UsuarioService usuarioService) {
-            this.usuarioService = usuarioService;
-        }
-
-        @GetMapping
-        public List<Usuario> getAllUsuarios() {
-            return usuarioService.getAllUsuarios();
-        }
-
-        @GetMapping("/{id}")
-        public Usuario getUsuarioById(@PathVariable long id) {
-            return usuarioService.getUsuarioById(id);
-        }
-
-        @PostMapping
-        public Usuario createUsuario(@RequestBody Usuario usuario) {
-            return usuarioService.createUsuario(usuario);
-        }
-
-        @PutMapping("/{id}")
-        public Usuario updateUsuario(@PathVariable long id, @RequestBody Usuario usuario) {
-            return usuarioService.updateUsuario(id, usuario);
-        }
-
-        @DeleteMapping("/{id}")
-        public void deleteUsuario(@PathVariable long id) {
-            usuarioService.deleteUsuario(id);
-        }
+    @Autowired
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
+
+    @GetMapping
+    public List<UsuarioDTO> getAllUsuarios() {
+        return usuarioService.getAllUsuariosDTO();
+    }
+
+    @GetMapping("/{id}")
+    public UsuarioDTO getUsuarioById(@PathVariable long id) {
+        return usuarioService.getUsuarioDTOById(id);
+    }
+
+    @PostMapping
+    public UsuarioDTO createUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.createUsuario(usuarioDTO);
+    }
+
+    @PutMapping("/{id}")
+    public UsuarioDTO updateUsuario(@PathVariable long id, @RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.updateUsuario(id, usuarioDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUsuario(@PathVariable long id) {
+        usuarioService.deleteUsuario(id);
+    }
+}

@@ -8,15 +8,14 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 import java.util.Set;
 
-@Table(name = "usuario")
 @Entity
 @Data
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUsuario;
+    private Long id;
 
-    @Column(unique = true, length = 50, nullable = false)
+    @Column(unique = true, length = 50, nullable = false, name = "nome_usuario")
     private String nomeUsuario;
 
     @Column(length = 50, nullable = false)
