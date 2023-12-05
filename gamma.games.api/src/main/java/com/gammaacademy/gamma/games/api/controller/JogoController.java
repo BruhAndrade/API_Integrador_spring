@@ -3,6 +3,8 @@ package com.gammaacademy.gamma.games.api.controller;
 import com.gammaacademy.gamma.games.api.dto.JogoDTO;
 import com.gammaacademy.gamma.games.api.services.JogoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,27 +21,32 @@ public class JogoController {
     }
 
     @GetMapping
-    public List<JogoDTO> getAllJogos() {
-        return jogoService.getAllJogosDTO();
+    public ResponseEntity<List<JogoDTO>> getAllJogos() {
+        List<JogoDTO> jogos = jogoService.getAllJogosDTO();
+        return new ResponseEntity<>(jogos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public JogoDTO getJogoById(@PathVariable long id) {
-        return jogoService.getJogoDTOById(id);
+    public ResponseEntity<JogoDTO> getJogoById(@PathVariable long id) {
+        JogoDTO jogo = jogoService.getJogoDTOById(id);
+        return new ResponseEntity<>(jogo, HttpStatus.OK);
     }
 
     @PostMapping
-    public JogoDTO createJogo(@RequestBody JogoDTO jogoDTO) {
-        return jogoService.createJogo(jogoDTO);
+    public ResponseEntity<JogoDTO> createJogo(@RequestBody JogoDTO jogoDTO) {
+        JogoDTO createdJogo = jogoService.createJogo(jogoDTO);
+        return new ResponseEntity<>(createdJogo, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public JogoDTO updateJogo(@PathVariable long id, @RequestBody JogoDTO jogoDTO) {
-        return jogoService.updateJogo(id, jogoDTO);
+    public ResponseEntity<JogoDTO> updateJogo(@PathVariable long id, @RequestBody JogoDTO jogoDTO) {
+        JogoDTO updatedJogo = jogoService.updateJogo(id, jogoDTO);
+        return new ResponseEntity<>(updatedJogo, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteJogo(@PathVariable long id) {
+    public ResponseEntity<Void> deleteJogo(@PathVariable long id) {
         jogoService.deleteJogo(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

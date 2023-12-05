@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/historico")
+@RequestMapping("/historicos")
 public class HistoricoController {
 
     private final HistoricoService historicoService;

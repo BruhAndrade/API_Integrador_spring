@@ -2,6 +2,9 @@ package com.gammaacademy.gamma.games.api.services;
 
 import com.gammaacademy.gamma.games.api.dto.HistoricoDTO;
 import com.gammaacademy.gamma.games.api.entities.Historico;
+import com.gammaacademy.gamma.games.api.entities.Jogo;
+import com.gammaacademy.gamma.games.api.entities.Usuario;
+
 import com.gammaacademy.gamma.games.api.repositories.HistoricoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -83,8 +86,23 @@ public class HistoricoService {
     private Historico convertToEntity(HistoricoDTO historicoDTO) {
         Historico historico = new Historico();
         historico.setPontuacao(historicoDTO.getPontuacao());
+
+        // Adicione a lógica para definir Jogo e Usuario na entidade
+        if (historicoDTO.getIdJogo() != null) {
+            Jogo jogo = new Jogo(); // Substitua pelo método que busca o jogo no banco
+            jogo.setId(historicoDTO.getIdJogo());
+            historico.setJogo(jogo);
+        }
+
+        if (historicoDTO.getIdUsuario() != null) {
+            Usuario usuario = new Usuario(); // Substitua pelo método que busca o usuário no banco
+            usuario.setId(historicoDTO.getIdUsuario());
+            historico.setUsuario(usuario);
+        }
+
         return historico;
     }
+
 
     public Historico findById(Long id) {
         Optional<Historico> optionalHistorico = historicoRepository.findById(id);
